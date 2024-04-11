@@ -19,9 +19,10 @@ We introduce **D-Pruner**, an unstructured dual-pruning methodology for domain-s
 ## Datasets
 
 ## Models and Experiments
-
+First of all, install all required Python packages with `pip install -r requirements.txt`.
 
 ## Acknowledgement
-
+* Our code for computing general weight importance is developed based on: https://github.com/IST-DASLab/sparsegpt.
+* Our fine-tuning code is developed based on: https://github.com/OpenLMLab/LOMO.
 
 ## Citation
