@@ -56,7 +56,7 @@ python code/test_casehold.py LLaMA2_HF_LOCATION PRUNED_MODEL_LOCATION
 python code/test_billsum.py LLaMA2_HF_LOCATION PRUNED_MODEL_LOCATION
 
 ```
-Code will be similar to the medical datasets.
+Evaluation code of the medical datasets will be similar to the provided code of legal datasets.
 
 
 ## Acknowledgement
