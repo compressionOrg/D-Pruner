@@ -9,7 +9,7 @@ Navigation:
 [Citation](#citation)
 
 ## Overview
-We introduce **D-Pruner**, an unstructured dual-pruning methodology for domain-specific compression on LLMs. It extracts a compressed, domain-specific, and task-agnostic LLM by identifying LLM weights that are pivotal for general capabilities, like linguistic capability and multi-task solving, and domain-specific knowledge. It assesses general weight importance by quantifying the error incurred upon their removal with the help of an open-domain calibration dataset. Then, it utilizes this general weight importance to refine the training loss, so that it preserves generality when fitting into a specific domain. By efficiently approximating weight importance with the refined training loss on a domain-specific calibration dataset, we obtain a pruned model emphasizing <ins>generality</ins> and <ins>specificity</ins>. Here <ins>generality</ins> refers to the general capabilities of an LLM such as language understanding and generation, and multi-task solving, and <ins>specificity</ins> refers to the capability of an LLM to understand domain-specific knowledge.
+We introduce **D-Pruner**, an unstructured dual-pruning methodology for domain-specific compression on LLMs. It extracts a compressed, domain-specific, and task-agnostic LLM by identifying LLM weights that are pivotal for general capabilities, like linguistic capability and multi-task solving, and domain-specific knowledge. It assesses general weight importance by quantifying the error incurred upon their removal with the help of an open-domain calibration dataset. Then, it utilizes this general weight importance to refine the training loss, so that it preserves generality when fitting into a specific domain. By efficiently approximating weight importance with the refined training loss on a domain-specific calibration dataset, we obtain a pruned model emphasizing <ins>generality</ins> and <ins>specificity</ins>. Here <ins>generality</ins> refers to the general capabilities of an LLM when applied to domain-specific challenges such as language understanding and generation, and multi-task solving, and <ins>specificity</ins> refers to the capability of an LLM to understand domain-specific knowledge.
 
 <p align="center">
 	<img src="assets/prune_types_example.png" width="600">
@@ -22,11 +22,11 @@ We perform model traning on a variety of datasets cross medical and legal domain
 In legal domain, we collected 300 instances from MultiLegalPile dataset for perplexity evaluation. We also used [CaseHOLD](https://github.com/reglab/casehold) and [BillSum](https://github.com/FiscalNote/BillSum). The processed version of all three datasets are in [legal_pruning_data](/code/legal_pruning_data) folder.
 
 ## Models and Experiments
-First of all, install all required Python packages with `pip install -r requirements.txt`. In order to obtain general weight importance score (at 50% sparsity on LLaMA2-7b), run the command below:
+First of all, install all required Python packages with `pip install -r requirements.txt`. In order to obtain general weight importance score for generality (at 50% sparsity on LLaMA2-7b), run the command below:
 
     python code/general.py LLaMA2_HF_LOCATION c4 --sparsity 0.52
 
-You will get general weight importance score that corresponds to individual weight of LLaMA2. Then, to perform fine-tuning with pruning via D-Pruner, run the command below:
+You will get general weight importance score that corresponds to individual weight of LLaMA2. Then, to perform fine-tuning with pruning via D-Pruner for specificity, run the command below:
 
     deepspeed --master_port 6006 code/src/train_lomo.py config/args_lomo.yaml
 
