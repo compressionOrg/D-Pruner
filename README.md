@@ -30,7 +30,7 @@ You will get general weight importance score that corresponds to individual weig
 
     deepspeed --master_port 6006 code/src/train_lomo.py config/args_lomo.yaml
 
-When you run this fine-tuning pipeline, remember to specify `model_name_or_path` as your model path and select `domain` as either "medical" or "legal" in [this file](/code/config/args_lomo.yaml). You might need to modify or tune other parameters based on the model of your choice (e.g., you are using the 13b version of LLaMA2 instead of 7b) and other experimental settings. Final importance scores are saved for model pruning. To actually prune the LLaMA2-7b model, use commands:
+Before you run this fine-tuning pipeline, remember to specify `model_name_or_path` as your model path and select `domain` as either "medical" or "legal" in [this file](/code/config/args_lomo.yaml). You might need to modify or tune other parameters based on the model of your choice (e.g., you are using the 13b version of LLaMA2 instead of 7b) and other experimental settings. Final importance scores are saved for model pruning. To actually prune the LLaMA2-7b model, use commands:
 ```
 # with iterative blocking
 python code/save_model_iterative.py LLaMA2_HF_LOCATION IMPORTANCE_LOCATION OUTPUT_LOCATION
@@ -47,13 +47,13 @@ To perform model evaluation, use commands:
 
 ```
 # For perplexity evaluation
-
+python code/legal_perplexity_evaluation.py LLaMA2_HF_LOCATION PRUNED_MODEL_LOCATION
 
 # For classification evaluation
-
+python code/test_casehold.py LLaMA2_HF_LOCATION PRUNED_MODEL_LOCATION
 
 # For summarization evaluation
-
+python code/test_billsum.py LLaMA2_HF_LOCATION PRUNED_MODEL_LOCATION
 
 ```
 Code will be similar to the medical datasets.
