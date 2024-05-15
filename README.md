@@ -1,5 +1,5 @@
 # D-Pruner
-Code for 2024 NAACL Findings paper [Pruning as a Domain-specific LLM Extractor]().
+Code for 2024 NAACL Findings paper [Pruning as a Domain-specific LLM Extractor](https://arxiv.org/abs/2405.06275).
 
 Navigation:
 [Overview](#overview), 
